@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name = 'AdvancedNavigationController'
-s.version = '1.0'
+s.version = '1.1'
 s.author = 'Gero Embser'
 s.homepage = 'https://github.com/geroembser/AdvancedNavigationController'
 s.license = { :type => 'MIT', :file => 'LICENSE' }
