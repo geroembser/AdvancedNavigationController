@@ -12,6 +12,8 @@
 		6B8528E62129C4E900DCBD58 /* AdvancedNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B8528D62129C4E800DCBD58 /* AdvancedNavigationController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6B8528F72129D71E00DCBD58 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 6B8528F62129D71E00DCBD58 /* LICENSE */; };
 		6B8528F92129D77300DCBD58 /* AdvancedNavigationController.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 6B8528F82129D77300DCBD58 /* AdvancedNavigationController.podspec */; };
+		6B8529452129E4B000DCBD58 /* AdvancedNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8529442129E4B000DCBD58 /* AdvancedNavigationController.swift */; };
+		6B852947212C6EF100DCBD58 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B852946212C6EF100DCBD58 /* String+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +36,8 @@
 		6B8528F52129D6F300DCBD58 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		6B8528F62129D71E00DCBD58 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		6B8528F82129D77300DCBD58 /* AdvancedNavigationController.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = AdvancedNavigationController.podspec; sourceTree = "<group>"; };
+		6B8529442129E4B000DCBD58 /* AdvancedNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedNavigationController.swift; sourceTree = "<group>"; };
+		6B852946212C6EF100DCBD58 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +82,8 @@
 		6B8528D52129C4E800DCBD58 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				6B8529442129E4B000DCBD58 /* AdvancedNavigationController.swift */,
+				6B852946212C6EF100DCBD58 /* String+Extensions.swift */,
 				6B8528F22129D3D000DCBD58 /* Supporting Files */,
 			);
 			path = Source;
@@ -180,6 +186,7 @@
 				TargetAttributes = {
 					6B8528D32129C4E800DCBD58 = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1000;
 					};
 					6B8528DB2129C4E800DCBD58 = {
 						CreatedOnToolsVersion = 10.0;
@@ -229,6 +236,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B852947212C6EF100DCBD58 /* String+Extensions.swift in Sources */,
+				6B8529452129E4B000DCBD58 /* AdvancedNavigationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,6 +379,7 @@
 		6B8528EC2129C4E900DCBD58 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -388,6 +398,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.geroembser.AdvancedNavigationController;
 				PRODUCT_NAME = AdvancedNavigationController;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -398,6 +409,7 @@
 		6B8528ED2129C4E900DCBD58 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -426,6 +438,7 @@
 		6B8528F02129C4E900DCBD58 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -443,6 +456,7 @@
 		6B8528F12129C4E900DCBD58 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

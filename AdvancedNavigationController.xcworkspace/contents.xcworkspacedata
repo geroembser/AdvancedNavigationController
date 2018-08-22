@@ -4,4 +4,7 @@
    <FileRef
       location = "container:AdvancedNavigationController.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:Example/AdvancedNavigationController Example.xcodeproj">
+   </FileRef>
 </Workspace>
