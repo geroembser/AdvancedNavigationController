@@ -62,27 +62,27 @@ open class AdvancedNavigationController: UINavigationController {
     }
     
     //MARK: - notifications
-    private var handlers: [EventHandler] = []
-    private var didShowEventHandlers: [EventHandler] {
+    private var handlers: [NavigationControllerEventHandler] = []
+    private var didShowEventHandlers: [NavigationControllerEventHandler] {
         return handlers.filter { $0.kind == .didShow }
     }
-    private var willShowEventHandlers: [EventHandler] {
+    private var willShowEventHandlers: [NavigationControllerEventHandler] {
         return handlers.filter { $0.kind == .willShow }
     }
     
     ///The return handler can be discarded, if it isn't planned to remove the handler before the deinitialization of the AdvancedNavigationController.
     ///As long as the AdvancedNavigationController exists, an added handler is called for the appropriate events. If the AdvancedNavigationController is about to be removed from memory (because no one uses the AdvancedNavigationController), usually all handlers are also freed (if the handler themselves don't refer to the AdvancedNavigationController instance).
-    open func add(didShowEventAction action: @escaping EventHandler.Action) -> EventHandler {
+    open func add(didShowEventAction action: @escaping NavigationControllerEventHandler.Action) -> NavigationControllerEventHandler {
         return add(handlerWithAction: action, ofKind: .didShow)
     }
     
-    open func add(willShowEventAction action: @escaping EventHandler.Action) -> EventHandler {
+    open func add(willShowEventAction action: @escaping NavigationControllerEventHandler.Action) -> NavigationControllerEventHandler {
         return add(handlerWithAction: action, ofKind: .willShow)
     }
     
-    private func add(handlerWithAction action: @escaping EventHandler.Action, ofKind kind: EventHandler.Kind) -> EventHandler {
+    private func add(handlerWithAction action: @escaping NavigationControllerEventHandler.Action, ofKind kind: NavigationControllerEventHandler.Kind) -> NavigationControllerEventHandler {
         //create new handler
-        let handler = EventHandler(action: action, kind: kind)
+        let handler = NavigationControllerEventHandler(action: action, kind: kind)
         
         //add it...
         add(eventHandler: handler)
@@ -90,10 +90,10 @@ open class AdvancedNavigationController: UINavigationController {
         return handler
     }
     
-    private func add(eventHandler handler: EventHandler) {
+    private func add(eventHandler handler: NavigationControllerEventHandler) {
         handlers += [handler]
     }
-    open func remove(eventHandler handler: EventHandler) {
+    open func remove(eventHandler handler: NavigationControllerEventHandler) {
         handlers.removeAll { $0 === handler }
     }
 }
@@ -150,7 +150,7 @@ extension AdvancedNavigationController {
 
 
 //MARK: - event handling
-open class EventHandler {
+open class NavigationControllerEventHandler {
     public enum Kind {
         case didShow
         case willShow
