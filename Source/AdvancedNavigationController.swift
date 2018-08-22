@@ -93,7 +93,7 @@ open class AdvancedNavigationController: UINavigationController {
     private func add(eventHandler handler: EventHandler) {
         handlers += [handler]
     }
-    func remove(eventHandler handler: EventHandler) {
+    open func remove(eventHandler handler: EventHandler) {
         handlers.removeAll { $0 === handler }
     }
 }
