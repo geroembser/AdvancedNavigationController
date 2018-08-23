@@ -69,12 +69,56 @@ extension AppDelegate {
             self.showOverlay(withMessage: "Will say \(hello)")
             print("will show: \(hello) using \(showingViewController)")
         })
+        
+        _ = advancedNavigationController.add(willPopEventAction: { (poppingViewController) in
+            guard let hello = (poppingViewController as? HelloViewController)?.hello else {
+            return //don't notifiy
+            }
+            
+            self.showOverlay(withMessage: "Will pop \(hello)", atPosition: .top, height: 90,
+                             labelInsets: (top: 30.0, bottom: 8.0, left: 8.0, right: 8.0))
+            print("will pop: \(hello) using \(poppingViewController)")
+        })
+        _ = advancedNavigationController.add(didPopEventAction: { (poppedViewController) in
+            guard let hello = (poppedViewController as? HelloViewController)?.hello else {
+            return //don't notifiy
+            }
+            
+            self.showOverlay(withMessage: "Did pop \(hello)", atPosition: .top, height: 90,
+                             labelInsets: (top: 30.0, bottom: 8.0, left: 8.0, right: 8.0))
+            print("did pop: \(hello) using \(poppedViewController)")
+            })
+        _ = advancedNavigationController.add(willPushEventAction: { (pushingViewController) in
+            guard let hello = (pushingViewController as? HelloViewController)?.hello else {
+                return //don't notifiy
+            }
+            
+            self.showOverlay(withMessage: "Will push \(hello)", atPosition: .top, height: 90,
+                             labelInsets: (top: 30.0, bottom: 8.0, left: 8.0, right: 8.0))
+            print("will push: \(hello) using \(pushingViewController)")
+        })
+        _ = advancedNavigationController.add(didPushEventAction: { (pushedViewController) in
+            guard let hello = (pushedViewController as? HelloViewController)?.hello else {
+                return //don't notifiy
+            }
+            
+            self.showOverlay(withMessage: "Did push \(hello)", atPosition: .top, height: 90,
+                             labelInsets: (top: 30.0, bottom: 8.0, left: 8.0, right: 8.0))
+            print("did push: \(hello) using \(pushedViewController)")
+        })
     }
 }
 
 //MARK: - overlay
 extension AppDelegate {
-    private func showOverlay(withMessage message: String) {
+    enum OverlayPosition {
+        case top
+        case bottom
+    }
+    private func showOverlay(withMessage message: String,
+                             atPosition position: OverlayPosition = .bottom,
+                             height: CGFloat = 70.0,
+                             labelInsets: (top: CGFloat, bottom: CGFloat, left: CGFloat, right: CGFloat) = (8,8,8,8)) {
         guard let window = window else {
             return //no view that can show the window
         }
@@ -88,7 +132,6 @@ extension AppDelegate {
         container.translatesAutoresizingMaskIntoConstraints = false
         window.addSubview(container)
         
-        let height = 70
         let containerConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[container]-0-|",
                                                          options: [],
                                                          metrics: nil,
@@ -97,14 +140,20 @@ extension AppDelegate {
                                              options: [],
                                              metrics: nil,
                                              views: ["container": container])
-        let bottomSpacingConstraint = NSLayoutConstraint(item: container,
-                                                         attribute: .bottom,
+        
+        //differing the following is important for correct drawings and animations of the different positions
+        let attribute: NSLayoutConstraint.Attribute = position == .top ? .top : .bottom
+        let firstItem = position == .top ? container.superview! : container
+        let secondItem = position == .top ? container : container.superview!
+        
+        let topBottomSpacingConstraint = NSLayoutConstraint(item: firstItem,
+                                                         attribute: attribute,
                                                          relatedBy: .equal,
-                                                         toItem: container.superview!,
-                                                         attribute: .bottom,
+                                                         toItem: secondItem,
+                                                         attribute: attribute,
                                                          multiplier: 1.0,
                                                          constant: CGFloat(height))
-        NSLayoutConstraint.activate(containerConstraints + [bottomSpacingConstraint])
+        NSLayoutConstraint.activate(containerConstraints + [topBottomSpacingConstraint])
         
         let label = UILabel()
         label.text = message
@@ -112,11 +161,11 @@ extension AppDelegate {
         label.translatesAutoresizingMaskIntoConstraints = false
         container.addSubview(label)
         
-        let labelConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-8-[label]-8-|",
+        let labelConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-\(labelInsets.left)-[label]-\(labelInsets.right)-|",
                                                               options: [],
                                                               metrics: nil,
                                                               views: ["label": label])
-            + NSLayoutConstraint.constraints(withVisualFormat: "V:|-8-[label]-8-|",
+            + NSLayoutConstraint.constraints(withVisualFormat: "V:|-\(labelInsets.top)-[label]-\(labelInsets.bottom)-|",
                                              options: [],
                                              metrics: nil, views: ["label": label])
         NSLayoutConstraint.activate(labelConstraints)
@@ -124,13 +173,13 @@ extension AppDelegate {
         //show the overlay
         window.layoutIfNeeded()
         UIView.animate(withDuration: 0.2, animations: {
-            bottomSpacingConstraint.constant = 0
+            topBottomSpacingConstraint.constant = 0
             window.layoutIfNeeded()
         }) { (completed) in
             Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (timer) in
                 window.layoutIfNeeded()
                 UIView.animate(withDuration: 0.2, animations: {
-                    bottomSpacingConstraint.constant = CGFloat(height)
+                    topBottomSpacingConstraint.constant = CGFloat(height)
                     window.layoutIfNeeded()
                 }, completion: { (_) in
                     container.removeFromSuperview()
