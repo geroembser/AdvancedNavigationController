@@ -45,6 +45,10 @@ _ = nc.add(didPushEventAction: { (pushedViewController) in
 nc.remove(eventHandlers:[willShowEventHandler, willPopEventHandler])
 ```
 
+## Example
+This is the example app...
+![example app animated gif](.github/AdvancedNavigationController%20Example%20Video.gif)
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
