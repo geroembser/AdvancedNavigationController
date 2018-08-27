@@ -155,7 +155,7 @@ extension AdvancedNavigationController: UINavigationControllerDelegate {
         }
         else if viewControllers.count < lastViewControllersValue.count {
             //pop
-            call(eventHandlers: didPopEventHandlers, forViewController: viewController)
+            call(eventHandlers: didPopEventHandlers, forViewController: lastViewControllersValue.last!)
         }
         //otherwise nothing
         
@@ -174,7 +174,7 @@ extension AdvancedNavigationController: UINavigationControllerDelegate {
         }
         else if viewControllers.count < lastViewControllersValue.count {
             //pop
-            call(eventHandlers: willPopEventHandlers, forViewController: viewController)
+            call(eventHandlers: willPopEventHandlers, forViewController: lastViewControllersValue.last!)
         }
         //otherwise nothing
         //Don't update the lastViewControllersValue until it isn't completed (which can only be assumed in the didShow... method above)
