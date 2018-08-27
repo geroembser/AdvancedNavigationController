@@ -18,7 +18,7 @@ open class AdvancedNavigationController: UINavigationController {
     }
     
     //MARK: - shadow delegate
-    private var shadowDelegate: UINavigationControllerDelegate?
+    private weak var shadowDelegate: UINavigationControllerDelegate?
     override open var delegate: UINavigationControllerDelegate? {
         set {
             shadowDelegate = newValue
