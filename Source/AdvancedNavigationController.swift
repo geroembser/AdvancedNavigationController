@@ -35,29 +35,26 @@ open class AdvancedNavigationController: UINavigationController {
             
             let components = condensedSymbol.components(separatedBy: " ")
             
-            //make sure it has exactly 7 components
-            guard components.count == 7 else {
+            //make sure it has more than 5 components
+            guard components.count >= 6 else {
                 //return the shadow delegate
                 return shadowDelegate
             }
             
-            //get the class that called this method/variable
-            let callingClassName = components[3].replacingOccurrences(of: "-[", with: "")
+            //get the class that called this method/variable (only works in debugging mode)
+            //let callingClassName = components[3].replacingOccurrences(of: "-[", with: "")
             
-            //make sure the class name exists
-            guard let aClass = NSClassFromString(callingClassName) else {
-                //shadow delegate...
-                return shadowDelegate
+            //get the framework where the call was originated from
+            let framework = components[1]
+            
+            //if the framework is "UIKitCore, the call's origin is UIKit, so return the actual delegate on which UIKit relies – not the shadow delegate
+            guard framework != "UIKitCore" else {
+                //actual/internal delegate
+                return super.delegate
             }
             
-            //make sure the class is UINavigationController
-            guard aClass == UINavigationController.self else {
-                //shadow delegate
-                return shadowDelegate
-            }
-            
-            //if delegate is called form UINavigationController (aka called from the superclass), return the non-shadow delegate
-            return super.delegate
+            //the call is not from UIKitCore, so we return the shadow delegate
+            return shadowDelegate
         }
     }
     
