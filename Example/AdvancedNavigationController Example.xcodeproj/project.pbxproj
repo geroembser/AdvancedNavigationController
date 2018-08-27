@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6B3EA1DA212DBC3A00714E06 /* Collection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B3EA1D9212DBC3A00714E06 /* Collection+Extension.swift */; };
+		6B4DDF1B2134904C001941A7 /* AdvancedNavigationController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B8529422129E48000DCBD58 /* AdvancedNavigationController.framework */; };
+		6B4DDF1C2134904C001941A7 /* AdvancedNavigationController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6B8529422129E48000DCBD58 /* AdvancedNavigationController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6B8529072129DD8200DCBD58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8529062129DD8200DCBD58 /* AppDelegate.swift */; };
 		6B8529092129DD8200DCBD58 /* HelloViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8529082129DD8200DCBD58 /* HelloViewController.swift */; };
 		6B85290C2129DD8200DCBD58 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B85290A2129DD8200DCBD58 /* Main.storyboard */; };
@@ -15,7 +17,6 @@
 		6B8529112129DD8300DCBD58 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B85290F2129DD8300DCBD58 /* LaunchScreen.storyboard */; };
 		6B85291C2129DD8300DCBD58 /* AdvancedNavigationController_ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85291B2129DD8300DCBD58 /* AdvancedNavigationController_ExampleTests.swift */; };
 		6B8529272129DD8300DCBD58 /* AdvancedNavigationController_ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8529262129DD8300DCBD58 /* AdvancedNavigationController_ExampleUITests.swift */; };
-		6B8529432129E48000DCBD58 /* AdvancedNavigationController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B8529422129E48000DCBD58 /* AdvancedNavigationController.framework */; };
 		6B85294D212D9C2E00DCBD58 /* Contents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85294C212D9C2E00DCBD58 /* Contents.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,20 @@
 			remoteInfo = "AdvancedNavigationController Example";
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6B4DDF1D2134904C001941A7 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				6B4DDF1C2134904C001941A7 /* AdvancedNavigationController.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		6B3EA1D9212DBC3A00714E06 /* Collection+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extension.swift"; sourceTree = "<group>"; };
@@ -60,7 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6B8529432129E48000DCBD58 /* AdvancedNavigationController.framework in Frameworks */,
+				6B4DDF1B2134904C001941A7 /* AdvancedNavigationController.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,6 +176,7 @@
 				6B8528FF2129DD8200DCBD58 /* Sources */,
 				6B8529002129DD8200DCBD58 /* Frameworks */,
 				6B8529012129DD8200DCBD58 /* Resources */,
+				6B4DDF1D2134904C001941A7 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
