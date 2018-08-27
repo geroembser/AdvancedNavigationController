@@ -129,6 +129,9 @@ open class AdvancedNavigationController: UINavigationController {
     open func remove(eventHandler handler: NavigationControllerEventHandler) {
         handlers.removeAll { $0 === handler }
     }
+    open func remove(eventHandlers: [NavigationControllerEventHandler]) {
+        eventHandlers.forEach { self.remove(eventHandler: $0) }
+    }
     
     //MARK: - recognizing push/pop
     ///Stores the last value of the viewControllers variable, to be able to recognize push-and pops appropriately
